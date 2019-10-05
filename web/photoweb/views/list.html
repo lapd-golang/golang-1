@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>List</title>
+	</head>
+	<body>
+		<ol>
+			{{rang $.images}}
+			<li><a href="view?id={{.|rulquery}}">{{.|html}}</a></li>
+		</ol>
+	</body>
+</html>
