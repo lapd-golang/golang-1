@@ -84,7 +84,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request){
 		http.NotFound(w, r)
 		return
 	}
-	w.Header().Set("Content-Type", image)
+	w.Header().Set("Content-Type", "image")
 	http.ServeFile(w, r, imagePath)
 }
 
@@ -105,11 +105,11 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	locals := make(map[string] interface)
+	locals := make(map[string] interface{})
 	images := []string{}
 	for _, fileInfo := range fileInfoArr{
 		if fileInfo.Name() != ".svn" {
-			images = append(images, fileInfo.Name)
+			images = append(images, fileInfo.Name())
 		}
 	}
 	locals["images"]=images
@@ -141,7 +141,7 @@ func safeHandler(fn http.HandlerFunc) http.HandlerFunc{
 }
 
 func staticDirHandler(mux *http.ServeMux, prefix string, staticDir string, flags int){
-	mux.HandleFunc(prefix, func(w http.ResponseWrite, r*http.Request){
+	mux.HandleFunc(prefix, func(w http.ResponseWriter, r*http.Request){
 		file := staticDir + r.URL.Path[len(prefix)-1:]	
 		if (flags & ListDir) == 0 {
 			if exists := isExists(file); !exists{
