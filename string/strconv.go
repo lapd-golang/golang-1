@@ -24,4 +24,13 @@ func main(){
 
 	f32, _ := strconv.ParseFloat("3.1415926535", 32)
 	fmt.Println("sting to float32", f32)
+
+	fmt.Println("----------------------------------------------")
+	ss := make([]byte, 0, 100)
+	ss = strconv.AppendInt(ss, 1234, 10)
+	ss = strconv.AppendBool(ss, false)
+	ss = strconv.AppendQuote(ss, "abcdefg")
+	ss = strconv.AppendQuoteRune(ss, '单')
+	fmt.Println(string(ss))
+	fmt.Println("----------------------------------------------")
 }
