@@ -5,6 +5,6 @@ import (
 )
 
 func main(){
-	log.Printf("logger...\n")
+	log.Printf("%d", "logger...\n")
 	log.Fatal("logger fatal...")
 }

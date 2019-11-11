@@ -7,8 +7,10 @@ import (
 
 type Server struct {
 	ServerName	string
-	ServerIP	string
+	serverIP	string
 	Name	string
+	Addr	string
+	Addr1	string
 }
 
 type Serverslice struct {

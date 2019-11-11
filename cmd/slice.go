@@ -7,6 +7,12 @@ import (
 )
 
 func main(){
+	err := checkCmdStatus()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("check OK")
+	}	
 	sliceFunc(os.Args[1:]...)
 }
 
@@ -28,4 +34,12 @@ func cmdFunc(cmd... string) string {
 
 //	return string(result)  // with '\n'
 	return strings.TrimSpace(string(result))
+}
+
+func checkCmdStatus()(error){
+	checkCmd := []string{"pgrep", "df1d"}
+	
+	err := exec.Command(checkCmd[0], checkCmd[1]).Run()
+	return err
+	 
 }
