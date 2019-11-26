@@ -17,8 +17,8 @@ func main(){
 	cases := [] struct{
 		s []string
 	}{
-		s: {"I" ,"1" ,"2" ,"3" , "4" ,"5"},
-//		{[]string{"I","1","2","3","4","5"}},
+//		s: {"I" ,"1" ,"2" ,"3" , "4" ,"5"},
+		{[]string{"I","1","2","3","4","5"}},
 	//	{["I" "1" "2" "3" "4" "5"]},
 	}
 
@@ -26,7 +26,7 @@ func main(){
 }
 
 func retSlice()(args[]string, err error){
-	args = make([]string, 6, 6)
+	args = make([]string, 8, 12)
 	args[0]="I"
 	args[1]="1"
 	args[2]="2"
@@ -38,6 +38,6 @@ func retSlice()(args[]string, err error){
 		err = errors.New("len is 0")
 	} 
 
-	fmt.Println(len(args))
+	fmt.Println("len: ", len(args), args)
 	return 
 }

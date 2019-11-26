@@ -27,4 +27,15 @@ func main(){
 		peo.Phone = "123456"
 		fmt.Println(peo)
 	}
+
+	ptmp, _ := testReturnPointer() 
+	fmt.Println(ptmp)
 }
+
+func testReturnPointer()(*People, error){
+	tmp := People{} 
+	tmp.Name = "wang"
+	tmp.Phone = "123"
+	return &tmp, nil
+}
+

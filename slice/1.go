@@ -32,9 +32,14 @@ func main(){
 	remote = append(remote[:1], remotet...)
 	fmt.Println(remote, len(remote))
 	fmt.Printf("%p\n", remote)
+	ps := &remote
+	fmt.Println(ps[0], ps[1])
 
 	buf := []byte{'A', 'B', 'C', 'D'}
-	buf[-1] = 'E'
-	buf[-2] = 'F'
+//	buf[-1] = 'E'
+//	buf[-2] = 'F'
 	fmt.Println(buf)
+
+	buff := make([]byte, 3)
+	fmt.Println(len(buff))
 }

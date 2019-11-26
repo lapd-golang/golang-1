@@ -5,7 +5,14 @@ import (
 
 type People struct{
 	Name string
+	House map[string] string
 }
+
+type Child struct{
+	Name string
+	House map[string] string
+}
+
 func main() {
 	set := map[int]string {}
 	if set != nil {
@@ -39,7 +46,18 @@ func main() {
 
 		}
 		set2 = make(map[string]*People)
-		set2["1"] = &People{"wang"}
+		set2["2"] = &People{"wang", map[string]string{"Beijing" : "Haidian"}}
 		fmt.Println(set2, len(set2))
 	}
+
+	ch := new(Child)
+	ch.Name = "Qing"
+	if ch.House == nil {
+		ch.House = make(map[string] string)
+		ch.House["Beijing"]="Haidian"
+	} else {
+	//	fmt.Println(ch)
+	}
+	ch.House["TJ"] = "Hepin"
+	fmt.Println(ch)
 }

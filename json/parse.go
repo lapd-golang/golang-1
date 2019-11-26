@@ -19,8 +19,8 @@ type Serverslice struct {
 
 func main(){
 	var s Serverslice
-	str := `{"servers":[{"serverName":"Shanghai_VPN", "serverIP":"127.0.0.1", "name":"wang"}, {"serverName":"Beijing_VPN", "serverIP":"127.0.0.2"}]}`
+	str := `{"servers":[{"Addr":"Shanghai", "serverName":"Shanghai_VPN", "serverIP":"127.0.0.1", "name":"wang"}, {"serverName":"Beijing_VPN", "serverIP":"127.0.0.2"}]}`
 	json.Unmarshal([]byte(str), &s)
-	fmt.Println(s)
+	fmt.Println(len(s.Servers),": ", s)
 }
 

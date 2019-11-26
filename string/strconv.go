@@ -12,6 +12,10 @@ func main(){
 
 	str2 := strconv.FormatInt(int64(1), 10)
 	fmt.Println("int64 to string", str2)
+	var i8 int8 = 127
+//	str22:= strconv.FormatInt(int64(i8), 10)
+	str22:= strconv.FormatInt((i8), 10)
+	fmt.Println("int64 to string", str22)
 
 	str3 := strconv.FormatFloat(float64(0.008), 'f', -1, 32)
 	fmt.Println("float64 to string", str3)
