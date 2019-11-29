@@ -28,6 +28,15 @@ func main(){
 		fmt.Println(peo)
 	}
 
+	var pStruct People
+//	if pStruct == nil {
+//		fmt.Println("var initvalue is null")
+//	} else {
+		fmt.Println(pStruct)
+		pStruct =  *peo	
+		fmt.Println("var initvalue init: ", pStruct)
+//	}
+
 	ptmp, _ := testReturnPointer() 
 	fmt.Println(ptmp)
 }
