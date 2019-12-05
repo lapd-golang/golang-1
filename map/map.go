@@ -23,8 +23,8 @@ func main() {
 		set = make(map[int]string)
 		set[0]="hello"
 		fmt.Println(set)
-
 	}
+	fmt.Println("--------------------")
 
 	var set1  map[int] interface {}
 	if set1 != nil {
@@ -35,6 +35,7 @@ func main() {
 		set1[2]=100
 		fmt.Println(set1)
 	}
+	fmt.Println("--------------------")
 
 	var set2  map[string]*People 
 //	set2 := map[string]*People{}
@@ -49,6 +50,7 @@ func main() {
 		set2["2"] = &People{"wang", map[string]string{"Beijing" : "Haidian"}}
 		fmt.Println(set2, len(set2))
 	}
+	fmt.Println("--------------------")
 
 	ch := new(Child)
 	ch.Name = "Qing"
@@ -60,4 +62,8 @@ func main() {
 	}
 	ch.House["TJ"] = "Hepin"
 	fmt.Println(ch)
+	fmt.Println("--------------------")
+
+	mm := ch.House
+	fmt.Println(mm)
 }
