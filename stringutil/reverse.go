@@ -7,3 +7,7 @@ func Reverse(s string) string {
 	}
 	return string(r)
 }
+
+func PrefixString(s, pre string) string {
+	return pre+s
+}

@@ -1,0 +1,5 @@
+[DBConfig]
+Host = "mongotest"
+Port = 27017
+DB = "metadata"
+Collection = "deviceDataAccessConfig"
