@@ -57,6 +57,7 @@ func main(){
 		}
 		//body, _ := ioutil.ReadAll(resp.Body)
 		//fmt.Println(string(body))
+		fmt.Println(resp.Proto)
 
 		resp.Body.Close()
 	}

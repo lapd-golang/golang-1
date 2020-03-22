@@ -47,8 +47,9 @@ func main(){
 		if resp.StatusCode != 200 {
 			fmt.Println("http reponse error!")
 		}
-		//body, _ := ioutil.ReadAll(resp.Body)
-		//fmt.Println(string(body))
+	//	body, _ := ioutil.ReadAll(resp.Body)
+//		fmt.Println(string(body))
+//		fmt.Println(resp.Header, resp.Proto)
 
 		resp.Body.Close()
 	}
