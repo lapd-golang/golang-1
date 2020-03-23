@@ -33,18 +33,22 @@ func main() {
 	pool.AppendCertsFromPEM(caCrt)
 
 	var qconf quic.Config
+	roundTripper := &http3.RoundTripper{
+		TLSClientConfig: &tls.Config{
+			RootCAs:            pool,
+			InsecureSkipVerify: *insecure,
+		},
+		QuicConfig: &qconf,
+	}
+/*	hclient := &http.Client{
+		Transport: roundTripper,
+	}
+*/
+//	time.Sleep(10*time.Second)
 
 	var i int
 	st := time.Now()
 	for i=0; i < *count; i++{
-
-		roundTripper := &http3.RoundTripper{
-			TLSClientConfig: &tls.Config{
-				RootCAs:            pool,
-				InsecureSkipVerify: *insecure,
-			},
-			QuicConfig: &qconf,
-		}
 		hclient := &http.Client{
 			Transport: roundTripper,
 		}

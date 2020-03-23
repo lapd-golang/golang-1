@@ -3,14 +3,16 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"crypto/tls"
 	"crypto/x509"
 	"flag"
 	"time"
+	"net/http"
+	"golang.org/x/net/http2"
 )
 
 var count = flag.Int("count", 1000, "the connection times")
+var httpVer = flag.Int("httpVer", 2, "HTTP version")
 
 func main(){
 	flag.Parse()
@@ -26,11 +28,30 @@ func main(){
 	}
 	pool.AppendCertsFromPEM(caCrt)
 
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{RootCAs: pool},
-		DisableCompression: true,
+	cliCrt, err := tls.LoadX509KeyPair("cert/client.crt", "cert/client.key")
+	if err != nil {
+		fmt.Println("LoadX509keypair err: ", err)
+		return
 	}
-	client := &http.Client{Transport: tr}
+
+	client := &http.Client{}
+	switch *httpVer {
+	case 1:
+		client.Transport = &http.Transport{
+			TLSClientConfig: &tls.Config{
+				RootCAs: pool,
+				Certificates: []tls.Certificate{cliCrt},
+			},
+	//		DisableCompression: true,
+		}
+	case 2:
+		client.Transport = &http2.Transport{
+			TLSClientConfig: &tls.Config{
+				RootCAs: pool,
+				Certificates: []tls.Certificate{cliCrt},
+			},
+		}
+	}
 
 	var i int
 	st := time.Now()
@@ -49,6 +70,7 @@ func main(){
 		}
 		//body, _ := ioutil.ReadAll(resp.Body)
 		//fmt.Println(string(body))
+		//fmt.Println(resp.Proto)
 
 		resp.Body.Close()
 		client.CloseIdleConnections()

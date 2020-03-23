@@ -32,18 +32,18 @@ func main(){
 		return
 	}
 
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			RootCAs: pool,
+			Certificates: []tls.Certificate{cliCrt},
+		},
+	}
+	client := &http.Client{Transport: tr}
+
 	var i int
 	st := time.Now()
 
 	for i=0; i < *count; i++{
-
-		tr := &http.Transport{
-			TLSClientConfig: &tls.Config{
-				RootCAs: pool,
-				Certificates: []tls.Certificate{cliCrt},
-			},
-		}
-		client := &http.Client{Transport: tr}
 
 		resp, err := client.Get("https://server:8088?numa=4&numb=6")
 		//resp, err := client.Get("https://localhost:8088")
@@ -57,9 +57,10 @@ func main(){
 		}
 		//body, _ := ioutil.ReadAll(resp.Body)
 		//fmt.Println(string(body))
-		fmt.Println(resp.Proto)
+//		fmt.Println(resp.Proto)
 
 		resp.Body.Close()
+		client.CloseIdleConnections()
 	}
 	et := time.Now()
 	elapsed := et.Sub(st)
